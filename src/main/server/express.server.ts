@@ -7,7 +7,7 @@ export const runServer = () => {
   const api = createServer();
 
   api.get("/", (_, res: Response) => {
-    res.send("<h1>Api Vagas</h1>");
+    res.send("<h1>Teste</h1>");
   });
 
   makeRoutes(api);
