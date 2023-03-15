@@ -2,7 +2,7 @@ import { DataBaseConnection } from "../../../../main/database/typeorm.connection
 import { User } from "../../../models/user.model";
 import { UserEntity } from "../../../shared/entities/users.entity";
 
-export class UsuarioRepository {
+export class UserRepository {
   private _repository = DataBaseConnection.connection.getRepository(UserEntity);
 
   public async createUser(user: User) {
