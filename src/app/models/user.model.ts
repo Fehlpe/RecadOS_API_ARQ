@@ -2,10 +2,10 @@ import { v4 } from "uuid";
 
 export class User {
   constructor(
-    private _id: string,
     private _username: string,
     private _password: string,
-    private _email: string
+    private _email: string,
+    private _id?: string
   ) {
     this._id = v4();
   }
@@ -24,13 +24,8 @@ export class User {
     return this._email;
   }
 
-  public static create(
-    id: string,
-    username: string,
-    password: string,
-    email: string
-  ) {
-    const user = new User(id, username, password, email);
+  public static create(username: string, password: string, email: string) {
+    const user = new User(username, password, email);
 
     return user;
   }

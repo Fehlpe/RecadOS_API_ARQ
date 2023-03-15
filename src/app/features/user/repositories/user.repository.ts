@@ -51,11 +51,6 @@ export class UserRepository {
   }
 
   private mapEntityToModel(entity: UserEntity) {
-    return User.create(
-      entity.userId,
-      entity.userPassword,
-      entity.userName,
-      entity.userEmail
-    );
+    return User.create(entity.userPassword, entity.userName, entity.userEmail);
   }
 }
