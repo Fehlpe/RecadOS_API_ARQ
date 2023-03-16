@@ -11,7 +11,7 @@ export const checkDuplicateUserValidator = async (
   try {
     const { email } = req.body;
     const usecase = new FindUserByEmail(new UserRepository());
-    const result = usecase.execute(email);
+    const result = await usecase.execute(email);
     if (!result) {
       return next();
     }

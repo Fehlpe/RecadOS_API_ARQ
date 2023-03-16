@@ -7,7 +7,7 @@ const userRoutes = Router();
 
 userRoutes.post(
   "/",
-  [checkDuplicateUserValidator, createUserValidator],
+  [createUserValidator, checkDuplicateUserValidator],
   new UserController().create
 );
 
