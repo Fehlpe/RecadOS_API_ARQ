@@ -17,6 +17,18 @@ export class UserRepository {
     return this.mapEntityToModel(result);
   }
 
+  public async loginUser(
+    userEmail: string,
+    userPassword: string
+  ): Promise<UserEntity | null> {
+    const userEntity = await this._repository.findOneBy({
+      userEmail,
+      userPassword,
+    });
+
+    return userEntity;
+  }
+
   public async getByUserName(username: string) {
     const result = await this._repository.findOneBy({
       userName: username,
