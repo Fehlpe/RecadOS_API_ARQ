@@ -7,14 +7,13 @@ export class UserRepository {
 
   public async createUser(user: User) {
     const userEntity = this._repository.create({
-      userId: user.id,
       userPassword: user.password,
       userEmail: user.email,
       userName: user.username,
     });
     const result = await this._repository.save(userEntity);
 
-    return this.mapEntityToModel(result);
+    result;
   }
 
   public async loginUser(

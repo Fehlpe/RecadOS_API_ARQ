@@ -9,6 +9,6 @@ export class CreateUserUseCase {
 
     const result = await this.repository.createUser(user);
 
-    return (result as User).toJson();
+    return result;
   }
 }
