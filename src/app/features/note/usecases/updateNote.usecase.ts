@@ -11,7 +11,6 @@ export class UpdateNoteUseCase {
     };
     const noteId = dataParams.noteId.toString();
 
-    console.log(note);
     const result = await this.repository.updateNote(note, noteId);
 
     return result;

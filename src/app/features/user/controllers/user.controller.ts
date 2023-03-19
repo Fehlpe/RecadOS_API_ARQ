@@ -22,7 +22,7 @@ export class UserController {
       if (!result) {
         return HttpHelper.badRequest(res, "Incorrect email or password!", 404);
       }
-      return HttpHelper.sucess(res, result);
+      return HttpHelper.sucess(res, result, "logged", 201);
     } catch (error: any) {
       return HttpHelper.serverError(res, error.toString());
     }

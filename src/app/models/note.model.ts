@@ -4,7 +4,8 @@ export class Note {
   constructor(
     private _title: string,
     private _description: string,
-    private _userId: string
+    private _userId: string,
+    private _noteId: string
   ) {}
 
   public get description() {
@@ -18,8 +19,13 @@ export class Note {
     return this._userId;
   }
 
-  public static create(title: string, description: string, userId: string) {
-    const note = new Note(title, description, userId);
+  public static create(
+    title: string,
+    description: string,
+    userId: string,
+    noteId: string
+  ) {
+    const note = new Note(title, description, userId, noteId);
 
     return note;
   }
@@ -29,6 +35,7 @@ export class Note {
       title: this._title,
       description: this.description,
       userId: this.userId,
+      noteId: this._noteId,
     };
   }
 }

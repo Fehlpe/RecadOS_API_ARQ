@@ -1,3 +1,4 @@
+import { ILike } from "typeorm";
 import { DataBaseConnection } from "../../../../main/database/typeorm.connection";
 import { Note } from "../../../models/note.model";
 import { NoteEntity } from "../../../shared/entities/notes.entity";
@@ -42,7 +43,47 @@ export class NoteRepository {
     });
   }
 
+  public async archiveNote(noteId: string) {
+    const oldNote = await this._repository.findOneBy({
+      noteId,
+    });
+
+    if (!oldNote) {
+      return undefined;
+    }
+
+    oldNote.noteArchived = true;
+
+    await this._repository.save(oldNote);
+  }
+
+  public async unarchiveNote(noteId: string) {
+    const oldNote = await this._repository.findOneBy({
+      noteId,
+    });
+
+    if (!oldNote) {
+      return undefined;
+    }
+
+    oldNote.noteArchived = false;
+
+    await this._repository.save(oldNote);
+  }
+
+  public async searchNote(userId: string, query: string) {
+    const where = query
+      ? { userId, noteTitle: ILike(`%${query}%`) }
+      : { userId };
+    return await this._repository.find({ where });
+  }
+
   private mapEntityToModel(entity: NoteEntity) {
-    return Note.create(entity.noteTitle, entity.noteDescription, entity.userId);
+    return Note.create(
+      entity.noteTitle,
+      entity.noteDescription,
+      entity.userId,
+      entity.noteId
+    );
   }
 }
