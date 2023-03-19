@@ -79,11 +79,6 @@ export class NoteRepository {
   }
 
   private mapEntityToModel(entity: NoteEntity) {
-    return Note.create(
-      entity.noteTitle,
-      entity.noteDescription,
-      entity.userId,
-      entity.noteId
-    );
+    return Note.create(entity.noteTitle, entity.noteDescription, entity.userId);
   }
 }
