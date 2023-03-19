@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.userRoutes = void 0;
+const express_1 = require("express");
+const user_controller_1 = require("../controllers/user.controller");
+const checkDuplicateUser_validator_1 = require("../validators/checkDuplicateUser.validator");
+const checkPasswords_validator_1 = require("../validators/checkPasswords.validator");
+const createUser_validator_1 = require("../validators/createUser.validator");
+const loginUser_validator_1 = require("../validators/loginUser.validator");
+const userRoutes = (0, express_1.Router)();
+exports.userRoutes = userRoutes;
+userRoutes.post("/", [createUser_validator_1.createUserValidator, checkDuplicateUser_validator_1.checkDuplicateUserValidator, checkPasswords_validator_1.checkPasswordsValidator], new user_controller_1.UserController().create);
+userRoutes.post("/login", [loginUser_validator_1.loginUserValidator], new user_controller_1.UserController().login);
